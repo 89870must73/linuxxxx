@@ -1,6 +1,7 @@
 #!/bin/bash
 
-MyScriptName='LODIxyrussScript'
+apt-get update
+apt-get upgrade -y
 
 # Your SSH Banner
 SSH_Banner='https://raw.githubusercontent.com/lodixyruss1/Patcher-OpenVPN-SSL/master/MyBannerLove'
@@ -20,10 +21,6 @@ OvpnDownload_Port='86' # Before changing this value, please read this document. 
 MyVPS_Time='Asia/Manila'
 #############################
 
-function InstUpdates(){
- export DEBIAN_FRONTEND=noninteractive
- apt-get update
- apt-get upgrade -y
  
  
  # Installing some important machine essentials
