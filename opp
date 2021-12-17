@@ -2,10 +2,6 @@ clear
 DISTRO=`awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }'`
 SERVER_IP=`ip -o route get to 8.8.8.8 | sed -n 's/.*src \([0-9.]\+\).*/\1/p'`
 
-# Welcome Message
-echo 'Welcome to WhyTzy96 Script'
-echo 'Script Version: 0.1'
-echo 'Updated on: 07/08/2021'
 
 # Verify Distro
 if ! [[ $DISTRO == "ubuntu" || $DISTRO == "debian" ]]; then
@@ -19,33 +15,6 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-
-if test -f "/root/.tcat_installed"; then
-	echo 'TunnelCat VPN Software already installed!'
-	exit 1
-fi
-
-#PORT SERVER
-#read -e -p 'Input your Server IP: ' -i $SERVER_IP SERVER_IP
-#read -e -p 'Input OpenVPN TCP Port: ' -i '1103' OPENVPN_PORT
-#read -e -p 'Input Privoxy Port: ' -i '8080' PRIVOXY_PORT
-#read -e -p 'Input ohpserver Port: ' -i '7752' OHP_PORT
-#read -e -p 'Input stunnel Port: ' -i '443' STUNNEL_PORT
-#read -e -p 'Input DNS Tunnel Domain: ' -i 'dns.tunnel.example.com' DNS_TUNNEL_DOMAIN
-
-# Check input
-echo 'Checking Input...'
-if ! [[ $SERVER_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-	echo 'Server IP is invalid'
-	exit 1
-fi
-
-if ! [[ 1103 =~ ^[0-9]+$ || 7752 =~ ^[0-9]+$ || 8080 =~ ^[0-9]+$ || $STUNNEL_PORT =~ ^[0-9]+$ ]]; then
-	echo 'Port is invalid'
-	exit 1
-fi
-
-echo 'Proceeding with the installation of dependencies'
 
 # Install Dependencies
 echo 'Installing Dependencies'
